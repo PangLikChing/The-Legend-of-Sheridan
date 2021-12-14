@@ -15,7 +15,7 @@ public class WalkingEnemy : MonoBehaviour
         health = 1;
     }
 
-    private void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider other)
     {
         // If the trigger object is a Two handed Mace and the player is currently attacking
         if (other.gameObject.tag == "TwoHandedMace" && other.transform.parent.GetComponent<Attack>().isAttacking == true)
@@ -30,6 +30,16 @@ public class WalkingEnemy : MonoBehaviour
                 // Set the gameObject to inactive
                 gameObject.SetActive(false);
             }
+        }
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        // If the enemy hits the player
+        if (collision.gameObject.tag == "Player")
+        {
+            // Decrease the number of health by damage, aka 1
+            collision.gameObject.GetComponent<PlayerStat>().health -= 1;
         }
     }
 }
