@@ -17,9 +17,7 @@ public class PlayerWeaponSwap : MonoBehaviour
     void Start()
     {
         // Initialize the array
-        weapons[0] = inventory.has1HandedSword;
-        weapons[1] = inventory.has2HandedMace;
-        weapons[2] = inventory.hasbow;
+        GetWeaponList();
     }
 
     void Update()
@@ -28,9 +26,9 @@ public class PlayerWeaponSwap : MonoBehaviour
         if (Input.GetKeyDown(swapLeft))
         {
             // Get the new bool
-            weapons[0] = inventory.has1HandedSword;
-            weapons[1] = inventory.has2HandedMace;
-            weapons[2] = inventory.hasbow;
+
+            GetWeaponList();
+
             // Hardcoding this...i don't know how to do this
             // This is to get the current using weapon
             for (int i = 0; i < player.transform.childCount; i++)
@@ -115,9 +113,7 @@ public class PlayerWeaponSwap : MonoBehaviour
         if (Input.GetKeyDown(swapRight))
         {
             // Get the new bool
-            weapons[0] = inventory.has1HandedSword;
-            weapons[1] = inventory.has2HandedMace;
-            weapons[2] = inventory.hasbow;
+            GetWeaponList();
             // Hardcoding this...i don't know how to do this
             // This is to get the current using weapon
             for (int i = 0; i < player.transform.childCount; i++)
@@ -196,5 +192,12 @@ public class PlayerWeaponSwap : MonoBehaviour
                 }
             }
         }
+    }
+
+    private void GetWeaponList()
+    {
+        weapons[0] = inventory.has1HandedSword;
+        weapons[1] = inventory.has2HandedMace;
+        weapons[2] = inventory.hasbow;
     }
 }
