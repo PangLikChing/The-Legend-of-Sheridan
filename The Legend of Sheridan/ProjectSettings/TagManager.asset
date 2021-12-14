@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - TwoHandedMace
+  - Key
+  - Weapon
   layers:
   - Default
   - TransparentFX
