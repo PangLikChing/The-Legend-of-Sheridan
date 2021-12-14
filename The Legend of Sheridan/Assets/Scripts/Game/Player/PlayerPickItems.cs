@@ -11,21 +11,23 @@ public class PlayerPickItems : MonoBehaviour
         Zelda = GameObject.Find("Zelda");
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter(Collider other)
     {
-        
-    }
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.transform.tag == "Key")
+        // If the player hits the key
+        if (other.transform.tag == "Key")
         {
-            collision.gameObject.SetActive(false);
+            // Set the key gameObject to inactive
+            other.gameObject.SetActive(false);
+            // Put the key to the inventory
             Zelda.GetComponent<Inventory>().hasKey = true;
         }
-        if (collision.transform.tag == "Weapon")
+        // If the player hits the one handed sword
+        if (other.transform.tag == "OneHandedSword")
         {
-            collision.gameObject.SetActive(false);
+            // Set the weapon to inactive
+            other.gameObject.SetActive(false);
+            // Put the weapon to the inventory
+            Zelda.GetComponent<Inventory>().has1HandedSword = true;
         }
     }
 }
