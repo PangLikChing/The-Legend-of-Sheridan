@@ -7,19 +7,13 @@ using UnityEngine;
 
 public class TwoHandedMace : MonoBehaviour
 {
-    // Temp key. Change when using gamepad
-    [SerializeField] KeyCode attack;
-
-    void Update()
+    void setIsAttackingToFalse()
     {
-        // If the player press the attack button
-        if (Input.GetKeyDown(attack))
-        {
-            // Play the attack animation
-            transform.GetComponent<Animation>().Play();
+        transform.parent.GetComponent<Attack>().isAttacking = false;
+    }
 
-            // Attack with the weapon
-            Debug.Log("Attack");
-        }
+    void setIsAttackingToFTrue()
+    {
+        transform.parent.GetComponent<Attack>().isAttacking = true;
     }
 }

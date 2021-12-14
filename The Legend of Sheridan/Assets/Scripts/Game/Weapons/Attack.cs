@@ -9,7 +9,7 @@ public class Attack : MonoBehaviour
 {
     // Temp key. Change when using gamepad
     [SerializeField] KeyCode attack;
-
+    public bool isAttacking = false;
     void Update()
     {
         // If the player press the attack button
