@@ -6,7 +6,9 @@ TagManager:
   tags:
   - TwoHandedMace
   - Key
-  - Weapon
+  - OneHandedSword
+  - Bow
+  - Arrow
   layers:
   - Default
   - TransparentFX
