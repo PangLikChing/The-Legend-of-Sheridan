@@ -10,14 +10,38 @@ public class Attack : MonoBehaviour
     // Temp key. Change when using gamepad
     [SerializeField] KeyCode attack;
     public bool isAttacking = false;
+
     void Update()
     {
         // If the player press the attack button
         if (Input.GetKeyDown(attack))
         {
-            // Play the attack animation
-            // This is a template now
-            transform.GetChild(0).gameObject.GetComponent<Animation>().Play();
+            // Loop though the weapon child list
+            for (int i = 0; i < transform.childCount; i++)
+            {
+                // If a weapon is currently active
+                if (transform.GetChild(i).gameObject.activeSelf == true)
+                {
+                    // If that weapon is not a bow
+                    if (transform.GetChild(i).gameObject.tag != "Bow")
+                    {
+                        // Play the weapon attack animation
+                        transform.GetChild(i).gameObject.GetComponent<Animation>().Play();
+                    }
+                    // If that is a bow
+                    else
+                    {
+                        // If there are still arrows avalible
+                        if (transform.GetChild(i).gameObject.transform.childCount != 0)
+                        {
+                            // Set the next arrow to active
+                            transform.GetChild(i).gameObject.transform.GetChild(0).gameObject.SetActive(true);
+                        }
+                    }
+                    // Break out of the for loop
+                    break;
+                }
+            }
 
             // Attack with the weapon
             Debug.Log("Attack");

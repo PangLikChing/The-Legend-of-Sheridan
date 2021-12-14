@@ -9,11 +9,18 @@ public class Inventory : MonoBehaviour
 {
     // Initialize
     public bool hasKey = false;
+    public bool has1HandedSword = false;
+    public bool has2HandedMace = true;
+    public bool hasbow = false;
+    public int arrowCount = 0;
 
-    // Start is called before the first frame update
     void Start()
     {
-        // Initialize the state of inventory on start
-        hasKey = false;   
+        // Initialize the state of inventory on start just to be safe
+        hasKey = false;
+        has1HandedSword = false;
+        has2HandedMace = true;
+        hasbow = false;
+        arrowCount = 0;
     }
 }
