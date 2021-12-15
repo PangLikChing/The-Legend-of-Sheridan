@@ -30,10 +30,8 @@ public class RockBullet : MonoBehaviour
         Vector3 offset = walkingEnemy.forward;
         // Set the position of the rock
         transform.position = walkingEnemy.position + offset;
-        // Bug here
         // Turn the rock to walking enemy's
         transform.rotation = walkingEnemy.rotation;
-        // Bug here
         // Change the parent to something outside of the walking enemy
         transform.SetParent(rockBulletPile);
         // Remembers the original direction
@@ -43,7 +41,7 @@ public class RockBullet : MonoBehaviour
     void FixedUpdate()
     {
         // Move the rock to the direction that they should go
-        gameObject.transform.position += transform.forward * 0.5f;
+        gameObject.transform.position += direction * 0.5f;
     }
 
     void OnTriggerEnter(Collider other)
