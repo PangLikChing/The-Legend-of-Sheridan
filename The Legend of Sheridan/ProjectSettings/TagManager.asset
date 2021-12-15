@@ -9,6 +9,8 @@ TagManager:
   - OneHandedSword
   - Bow
   - Arrow
+  - WalkingEnemy
+  - Rock
   layers:
   - Default
   - TransparentFX

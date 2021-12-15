@@ -11,9 +11,24 @@ public class Arrow : MonoBehaviour
     Vector3 direction;
     // arrows should be a empty game object that is not a child of the player
     [SerializeField] Transform quiver;
+    Transform bow;
+
+    void Awake()
+    {
+        // If the parent of the arrow is a bow
+        if (transform.parent.tag == "Bow")
+        {
+            // Set the bow to be the parent of the arrow
+            bow = transform.parent;
+        }
+    }
 
     void OnEnable()
     {
+        // offset is the distance between the bow and the arrow should be
+        Vector3 offset = bow.forward;
+        // Set the position of the arrow
+        transform.position = bow.position + offset;
         // Remembers the original direction
         direction = transform.forward;
         // Change the parent to something outside of the bow
@@ -26,17 +41,31 @@ public class Arrow : MonoBehaviour
         gameObject.transform.Translate(direction * -0.5f, Space.Self);
     }
 
+    // If the arrow hits anything other than the player and the bow
     private void OnTriggerEnter(Collider other)
     {
-        // Set the arrow to inactive
-        gameObject.SetActive(false);
-        Debug.Log("trigger");
+        if (other.gameObject.tag == "Player" || other.gameObject.tag == "Bow")
+        {
+            // Do nothing
+        }
+        else
+        {
+            // Set the arrow to inactive
+            gameObject.SetActive(false);
+        }
     }
 
+    // If the arrow hits anything other than the player and the bow
     private void OnCollisionEnter(Collision collision)
     {
-        // Set the arrow to inactive
-        gameObject.SetActive(false);
-        Debug.Log("enter");
+        if (collision.gameObject.tag == "Player" || collision.gameObject.tag == "Bow")
+        {
+            // Do nothing
+        }
+        else
+        {
+            // Set the arrow to inactive
+            gameObject.SetActive(false);
+        }
     }
 }

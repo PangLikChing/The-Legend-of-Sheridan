@@ -10,6 +10,9 @@ public class WalkingEnemy : MonoBehaviour
     // Initialize
     GameManager gameManager;
     int health = 1;
+    public bool hasRock = false;
+    [SerializeField] float attackDistance = 10;
+    [SerializeField] GameObject rockPile, player;
 
     void Start()
     {
@@ -17,10 +20,34 @@ public class WalkingEnemy : MonoBehaviour
         gameManager = FindObjectOfType<GameManager>();
         // Initialize the stat at start
         health = 1;
+        hasRock = false;
+    }
+
+    void FixedUpdate()
+    {
+        // Calculate the distance between the player and this walking enemy
+        float distance = Vector3.Distance(player.transform.position, transform.position);
+        // If the distance between the player and this walking enemy is less than the attacking distance and has a rock
+        if (distance <= attackDistance && hasRock == true)
+        {
+            // Throw the rock
+            ThrowRock();
+        }
     }
 
     void OnTriggerEnter(Collider other)
     {
+        // If the enemy reached the rock
+        if (other.gameObject.tag == "Rock")
+        {
+            // Pick up the rock
+            hasRock = true;
+            // Get a rock from rock pile and set the parent to the walking enemy
+            rockPile.transform.GetChild(0).transform.SetParent(transform);
+            // Set the rock to inactive
+            other.gameObject.SetActive(false);
+        }
+
         // If the trigger object is a One Handed Sword and the player is currently attacking
         if (other.gameObject.tag == "OneHandedSword" && other.transform.parent.GetComponent<Attack>().isAttacking == true)
         {
@@ -61,8 +88,6 @@ public class WalkingEnemy : MonoBehaviour
             {
                 // Set the gameObject to inactive
                 gameObject.SetActive(false);
-                // Set the arrow to inactive
-                other.gameObject.SetActive(false);
             }
         }
     }
@@ -78,5 +103,14 @@ public class WalkingEnemy : MonoBehaviour
             // Ask the game manager to check health and update UI
             gameManager.CheckHealth();
         }
+    }
+
+    // Function to throw a rock
+    void ThrowRock()
+    {
+        // Set hasRock to false
+        hasRock = false;
+        // Throw the rock
+        transform.GetChild(0).gameObject.SetActive(true);
     }
 }

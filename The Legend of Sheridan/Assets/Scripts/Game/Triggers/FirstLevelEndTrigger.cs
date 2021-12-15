@@ -7,12 +7,23 @@ using UnityEngine;
 
 public class FirstLevelEndTrigger : MonoBehaviour
 {
-    private void OnTriggerEnter(Collider other)
+    // Initialize
+    GameManager gameManager;
+
+    void Start()
+    {
+        // Find the game manager
+        gameManager = FindObjectOfType<GameManager>();
+    }
+    void OnTriggerEnter(Collider other)
     {
         // If the player hit the end game trigger
         if (other.gameObject.tag == "Player")
         {
             // Play some animation maybe
+
+            // Save player stat
+            gameManager.SaveData();
 
             // Load next level
             Debug.Log("Next level");
