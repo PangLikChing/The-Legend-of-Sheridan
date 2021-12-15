@@ -1,35 +1,148 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     // Initialize
     [SerializeField] Inventory playerInventory;
     [SerializeField] GameObject heart1, heart2, heart3, gameOverMenu;
-    [SerializeField] Transform bow;
+    [SerializeField] Transform bow, quiver;
     [SerializeField] PlayerStat playerStat;
+    [SerializeField] Image weaponImage;
+    [SerializeField] List<Sprite> weaponSprites;
     int health;
+    // Bool for checking if the player is starting the game from the beginning or not
+    [SerializeField] bool fromBeginning;
 
     void Start()
     {
-        // Initialize the health amount
+        // If we are from the beginning
+        if (fromBeginning == true)
+        {
+            // Do nothing
+        }
+        // If we are loading a level
+        else
+        {
+            // Load the data
+            LoadData();
+            // Adjust the arrow number
+            int currentArrowNumber = bow.childCount;
+            // If the there are difference between the default arrow number
+            if (currentArrowNumber != playerInventory.arrowCount)
+            {
+                // If current arrow number is larger
+                if (currentArrowNumber > playerInventory.arrowCount)
+                {
+                    // Get the difference between the 2
+                    int difference = currentArrowNumber - playerInventory.arrowCount;
+
+                    // Remove that much amount of arrows
+                    for (int i = 0; i < difference; i++)
+                    {
+                        bow.GetChild(0).SetParent(quiver);
+                    }
+                }
+                // If the arrowCount in inverntory is larger
+                else if (playerInventory.arrowCount > currentArrowNumber)
+                {
+                    // Get the difference between the 2
+                    int difference = playerInventory.arrowCount - currentArrowNumber;
+
+                    // Add that much arrows to the bow
+                    for (int i = 0; i < difference; i++)
+                    {
+                        bow.GetChild(0).SetParent(quiver);
+                    }
+                }
+            }
+        }
         health = playerStat.health;
-        // test
-        Debug.Log("Health: " + PlayerPrefs.GetInt("Health"));
-        Debug.Log("Has1HandedSword: " + PlayerPrefs.GetInt("Has1HandedSword"));
-        Debug.Log("Has2HandedMace: " + PlayerPrefs.GetInt("Has2HandedMace"));
-        Debug.Log("hasbow: " + PlayerPrefs.GetInt("hasbow"));
-        Debug.Log("ArrowCount: " + PlayerPrefs.GetInt("ArrowCount"));
-        Debug.Log("hasKey: " + PlayerPrefs.GetInt("hasKey"));
-        // test
+    }
+
+    void LoadData()
+    {
+        // Load data
+        // Health
+        playerStat.health = PlayerPrefs.GetInt("Health");
+        // Set the current health UI to match the current health
+        health = playerStat.health;
+        CheckHealth();
+
+        // Sword
+        // If the player has 1 handed sword
+        if (PlayerPrefs.GetInt("Has1HandedSword") == 1)
+        {
+            // Set has1HandedSword to true
+            playerInventory.has1HandedSword = true;
+        }
+        // If they don't
+        else
+        {
+            // Set has1HandedSword to false
+            playerInventory.has1HandedSword = false;
+        }
+
+        // Mace
+        // If the player has 2 handed mace
+        if (PlayerPrefs.GetInt("Has2HandedMace") == 1)
+        {
+            // Set has2HandedMace to true
+            playerInventory.has2HandedMace = true;
+        }
+        // If they don't
+        else
+        {
+            // Set has2HandedMace to false
+            playerInventory.has2HandedMace = false;
+        }
+
+        // Bow
+        // If the player has a bow
+        if (PlayerPrefs.GetInt("hasbow") == 1)
+        {
+            // Set hasbow to true
+            playerInventory.hasbow = true;
+        }
+        // If they don't
+        else
+        {
+            // Set hasbow to false
+            playerInventory.hasbow = false;
+        }
+
+        // Arrow Count
+        // Set the arrowCount as same as the data
+        playerInventory.arrowCount = PlayerPrefs.GetInt("ArrowCount");
+
+        // Key
+        // If the player has the key
+        if (PlayerPrefs.GetInt("hasKey") == 1)
+        {
+            // Set hasKey to true
+            playerInventory.hasKey = true;
+        }
+        // If they don't
+        else
+        {
+            // Set hasKey to false
+            playerInventory.hasKey = false;
+        }
+
+        // Set weapon to the one previously used
+        // Set the new weapon to active
+        playerInventory.transform.GetChild(PlayerPrefs.GetInt("currentWeapon")).gameObject.SetActive(true);
+        // Swap to the sprite of that weapon
+        weaponImage.sprite = weaponSprites[PlayerPrefs.GetInt("currentWeapon")];
     }
 
     // Function to save player's stat
     public void SaveData()
     {
         // Set the health to the remaining health of the player
-        PlayerPrefs.SetInt("Health", health);
+        PlayerPrefs.SetInt("Health", playerStat.health);
 
         // If the player has 1 handed sword
         if (playerInventory.has1HandedSword == true)
@@ -84,6 +197,18 @@ public class GameManager : MonoBehaviour
         {
             // Set hasbow to false
             PlayerPrefs.SetInt("hasKey", 0);
+        }
+
+        // Current using weapon index
+        // Find the weapon that the player is currently using
+        for (int i = 0; i < playerInventory.transform.childCount; i++)
+        {
+            // If that weapon is active
+            if (playerInventory.transform.GetChild(i).gameObject.activeSelf == true)
+            {
+                // Save that index
+                PlayerPrefs.SetInt("currentWeapon", i);
+            }
         }
 
         // Save all of the modified data

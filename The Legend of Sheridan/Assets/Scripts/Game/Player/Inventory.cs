@@ -13,14 +13,4 @@ public class Inventory : MonoBehaviour
     public bool has2HandedMace = true;
     public bool hasbow = false;
     public int arrowCount = 0;
-
-    void Start()
-    {
-        // Initialize the state of inventory on start just to be safe
-        hasKey = false;
-        has1HandedSword = false;
-        has2HandedMace = true;
-        hasbow = false;
-        arrowCount = 0;
-    }
 }

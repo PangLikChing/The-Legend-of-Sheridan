@@ -46,7 +46,6 @@ public class RockBullet : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.gameObject.tag);
         // If the rock hits the player
         if (other.gameObject.tag == "Player")
         {

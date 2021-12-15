@@ -26,6 +26,9 @@ public class FirstLevelEndTrigger : MonoBehaviour
             // Play the scene changing animation by setting it to active
             sceneChanger.SetActive(true);
 
+            // Tell the game manager that we are loading a level
+            //gameManager.fromBeginning = true;
+
             // Save player stat
             gameManager.SaveData();
         }

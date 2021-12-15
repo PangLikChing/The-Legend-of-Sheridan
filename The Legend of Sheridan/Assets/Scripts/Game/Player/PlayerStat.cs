@@ -4,10 +4,5 @@ using UnityEngine;
 
 public class PlayerStat : MonoBehaviour
 {
-    public int health = 0;
-
-    void Start()
-    {
-        health = 3;
-    }
+    public int health = 3;
 }
