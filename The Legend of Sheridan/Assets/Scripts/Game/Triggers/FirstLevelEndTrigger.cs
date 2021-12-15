@@ -9,6 +9,8 @@ public class FirstLevelEndTrigger : MonoBehaviour
 {
     // Initialize
     GameManager gameManager;
+    // sceneChanger is the game object playing the scene changing animation
+    [SerializeField] GameObject sceneChanger;
 
     void Start()
     {
@@ -20,13 +22,12 @@ public class FirstLevelEndTrigger : MonoBehaviour
         // If the player hit the end game trigger
         if (other.gameObject.tag == "Player")
         {
-            // Play some animation maybe
+            // Play the scene changing animation maybe
+            // Play the scene changing animation by setting it to active
+            sceneChanger.SetActive(true);
 
             // Save player stat
             gameManager.SaveData();
-
-            // Load next level
-            Debug.Log("Next level");
         }
     }
 }
