@@ -11,7 +11,14 @@ public class Attack : MonoBehaviour
     [SerializeField] KeyCode attack;
     public bool isAttacking = false;
 
-    void Update()
+    SoundManager soundManager;
+
+    void Start()
+    {
+        soundManager = FindObjectOfType<SoundManager>();
+        soundManager.Play("Main theme");
+    }
+        void Update()
     {
         // If the player press the attack button
         if (Input.GetKeyDown(attack))
@@ -27,10 +34,16 @@ public class Attack : MonoBehaviour
                     {
                         // Play the weapon attack animation
                         transform.GetChild(i).gameObject.GetComponent<Animation>().Play();
+                        //soundManager.Play("One hand sword");
+                        soundManager.Play("Two hand sword");
+                        soundManager = FindObjectOfType<SoundManager>();
                     }
                     // If that is a bow
                     else
                     {
+                        soundManager.Play("Arrow");
+                        soundManager = FindObjectOfType<SoundManager>();
+
                         // If there are still arrows avalible
                         if (transform.GetChild(i).gameObject.transform.childCount != 0)
                         {

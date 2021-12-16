@@ -16,8 +16,13 @@ public class GameManager : MonoBehaviour
     // Bool for checking if the player is starting the game from the beginning or not
     [SerializeField] bool fromBeginning;
 
+    SoundManager soundManager;
+
     void Start()
     {
+        soundManager = FindObjectOfType<SoundManager>();
+        soundManager.Play("Main theme");
+
         // If we are from the beginning
         if (fromBeginning == true)
         {
@@ -228,6 +233,7 @@ public class GameManager : MonoBehaviour
             heart1.SetActive(false);
             heart2.SetActive(true);
             heart3.SetActive(true);
+            soundManager.Play("Player take damage");
         }
         // If 1 health remaining
         if (health == 1)
@@ -236,6 +242,7 @@ public class GameManager : MonoBehaviour
             heart1.SetActive(false);
             heart2.SetActive(false);
             heart3.SetActive(true);
+            soundManager.Play("Player take damage");
         }
         // If below 0 remaining
         if (health <= 0)
@@ -247,6 +254,7 @@ public class GameManager : MonoBehaviour
 
             // Display Gameover menu
             gameOverMenu.SetActive(true);
+            soundManager.Play("Hero dying");
             // Play death animation
         }
     }

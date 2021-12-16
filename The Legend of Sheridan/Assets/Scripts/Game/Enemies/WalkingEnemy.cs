@@ -14,8 +14,13 @@ public class WalkingEnemy : MonoBehaviour
     [SerializeField] float attackDistance = 10;
     [SerializeField] GameObject rockPile, player;
 
+    SoundManager soundManager;
+
     void Start()
     {
+        soundManager = FindObjectOfType<SoundManager>();
+        soundManager.Play("Main theme");
+
         // Find the game manager
         gameManager = FindObjectOfType<GameManager>();
         // Initialize the stat at start
@@ -74,6 +79,7 @@ public class WalkingEnemy : MonoBehaviour
             {
                 // Set the gameObject to inactive
                 gameObject.SetActive(false);
+                soundManager.Play("Monster dying");
             }
         }
         // If the trigger object is an arrow
@@ -88,6 +94,7 @@ public class WalkingEnemy : MonoBehaviour
             {
                 // Set the gameObject to inactive
                 gameObject.SetActive(false);
+                soundManager.Play("Monster dying");
             }
         }
     }

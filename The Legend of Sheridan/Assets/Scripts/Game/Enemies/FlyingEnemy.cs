@@ -6,8 +6,13 @@ public class FlyingEnemy : MonoBehaviour
 {
     int health = 1;
 
+    SoundManager soundManager;
+
     private void Start()
     {
+        soundManager = FindObjectOfType<SoundManager>();
+        soundManager.Play("Main theme");
+
         // Initialize the stat at start
         health = 1;
     }
@@ -19,6 +24,7 @@ public class FlyingEnemy : MonoBehaviour
         {
             // Reduct the health of the enemy by damage from the weapon aka the 1
             gameObject.GetComponent<FlyingEnemy>().health -= 1;
+            soundManager.Play("Monster take damage");
             // Play box destroy sound effect
 
             // If the remaining health is lower than or equal to 0
@@ -26,6 +32,7 @@ public class FlyingEnemy : MonoBehaviour
             {
                 // Set the gameObject to inactive
                 gameObject.SetActive(false);
+                soundManager.Play("Monster dying");
             }
         }
     }

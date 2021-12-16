@@ -2984,7 +2984,62 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61f8fc933564345df8cdd13f7fd20068, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sounds: []
+  sounds:
+  - name: Arrow
+    clip: {fileID: 8300000, guid: 08507cfacbc57cf4998f9402bc8018a9, type: 3}
+    volume: 0.77
+    pitch: 1
+    source: {fileID: 0}
+  - name: Dungeon theme
+    clip: {fileID: 8300000, guid: 7cbe5bef2f1747346a9e79cbe58e2339, type: 3}
+    volume: 0.77
+    pitch: 1
+    source: {fileID: 0}
+  - name: Hero dying
+    clip: {fileID: 8300000, guid: bf547e4a16d4a2a4c9f0a386eac24481, type: 3}
+    volume: 0.77
+    pitch: 1
+    source: {fileID: 0}
+  - name: Main theme
+    clip: {fileID: 8300000, guid: 54a9af5cc5858ef43a202f8a24c7f008, type: 3}
+    volume: 0.77
+    pitch: 1
+    source: {fileID: 0}
+  - name: Monster dying
+    clip: {fileID: 8300000, guid: 05435fd99e358d14b9ae53adb056a994, type: 3}
+    volume: 0.77
+    pitch: 1
+    source: {fileID: 0}
+  - name: Monster take damage
+    clip: {fileID: 8300000, guid: fbcfef9a3c01e3b439d61742852cf976, type: 3}
+    volume: 0.77
+    pitch: 1
+    source: {fileID: 0}
+  - name: One hand sword
+    clip: {fileID: 8300000, guid: 5928e170c7de2dc448df2acc0dbbab44, type: 3}
+    volume: 0.77
+    pitch: 1
+    source: {fileID: 0}
+  - name: Pick up item
+    clip: {fileID: 8300000, guid: 5b7c77893239936458685ff8ab4a7780, type: 3}
+    volume: 0.77
+    pitch: 1
+    source: {fileID: 0}
+  - name: Player take damage
+    clip: {fileID: 8300000, guid: ae7ec18384948fc4da3fdbe4df187674, type: 3}
+    volume: 0.77
+    pitch: 1
+    source: {fileID: 0}
+  - name: Two hand sword
+    clip: {fileID: 8300000, guid: ef7e9b72ffd18ac41a06a0f292fc9f66, type: 3}
+    volume: 0.77
+    pitch: 1
+    source: {fileID: 0}
+  - name: Vehicle
+    clip: {fileID: 8300000, guid: 64c9466716a4d3649bd2222068db84aa, type: 3}
+    volume: 0.77
+    pitch: 1
+    source: {fileID: 0}
 --- !u!4 &939094086
 Transform:
   m_ObjectHideFlags: 0
