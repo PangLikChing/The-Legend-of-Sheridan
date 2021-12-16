@@ -10700,6 +10700,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Vehicle Player
       objectReference: {fileID: 0}
+    - target: {fileID: 1315965751618932453, guid: b50920cbfb802bb46a62824c27a54e8d, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b50920cbfb802bb46a62824c27a54e8d, type: 3}
 --- !u!1001 &2789100952744298072
