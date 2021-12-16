@@ -7,13 +7,15 @@ public class RockBullet : MonoBehaviour
     // Initialize
     Vector3 direction;
     Transform walkingEnemy;
-    [SerializeField] GameManager gameManager;
+    GameManager gameManager;
+    SoundManager soundManager;
     [SerializeField] Transform rockBulletPile, player;
 
     void Awake()
     {
-        // Get the game manager
+        // Get the game manager and sound manager
         gameManager = FindObjectOfType<GameManager>();
+        soundManager = FindObjectOfType<SoundManager>();
         // Set game object to inactive
         gameObject.SetActive(false);
     }
@@ -53,6 +55,8 @@ public class RockBullet : MonoBehaviour
             other.gameObject.GetComponent<PlayerStat>().health -= 1;
             // Ask the game manager to check health and update UI
             gameManager.CheckHealth();
+            // Play take damage sound effect
+            soundManager.Play("Player take damage");
             // Set the gameObject to inactive
             gameObject.SetActive(false);
         }
@@ -83,6 +87,8 @@ public class RockBullet : MonoBehaviour
             collision.gameObject.GetComponent<PlayerStat>().health -= 1;
             // Ask the game manager to check health and update UI
             gameManager.CheckHealth();
+            // Play take damage sound effect
+            soundManager.Play("Player take damage");
             // Set the gameObject to inactive
             gameObject.SetActive(false);
         }

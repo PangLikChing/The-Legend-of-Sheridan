@@ -9,18 +9,15 @@ public class WalkingEnemy : MonoBehaviour
 {
     // Initialize
     GameManager gameManager;
+    SoundManager soundManager;
     int health = 1;
     public bool hasRock = false;
     [SerializeField] float attackDistance = 10;
     [SerializeField] GameObject rockPile, player;
 
-    SoundManager soundManager;
-
     void Start()
     {
         soundManager = FindObjectOfType<SoundManager>();
-        soundManager.Play("Main theme");
-
         // Find the game manager
         gameManager = FindObjectOfType<GameManager>();
         // Initialize the stat at start
@@ -109,6 +106,8 @@ public class WalkingEnemy : MonoBehaviour
             collision.gameObject.GetComponent<PlayerStat>().health -= 1;
             // Ask the game manager to check health and update UI
             gameManager.CheckHealth();
+            // Play take damage sound effect
+            soundManager.Play("Player take damage");
         }
     }
 

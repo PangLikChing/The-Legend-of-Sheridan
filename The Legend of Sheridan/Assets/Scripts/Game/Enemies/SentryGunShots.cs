@@ -8,12 +8,14 @@ using UnityEngine;
 public class SentryGunShots : MonoBehaviour
 {
     GameManager gameManager;
+    SoundManager soundManager;
     [SerializeField] float projectileSpeed = 0.5f;
 
     void Start()
     {
-        // Find the game manager
+        // Find the game manager and souond manager
         gameManager = FindObjectOfType<GameManager>();
+        soundManager = FindObjectOfType<SoundManager>();
     }
 
     void FixedUpdate()
@@ -38,6 +40,8 @@ public class SentryGunShots : MonoBehaviour
             other.gameObject.GetComponent<PlayerStat>().health -= 1;
             // Ask the game manager to check health and update UI
             gameManager.CheckHealth();
+            // Play take damage sound effect
+            soundManager.Play("Player take damage");
         }
     }
 

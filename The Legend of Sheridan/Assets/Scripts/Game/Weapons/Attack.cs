@@ -34,9 +34,12 @@ public class Attack : MonoBehaviour
                     {
                         // Play the weapon attack animation
                         transform.GetChild(i).gameObject.GetComponent<Animation>().Play();
-                        //soundManager.Play("One hand sword");
-                        soundManager.Play("Two hand sword");
-                        soundManager = FindObjectOfType<SoundManager>();
+                        // If it is not attacking currently and if it is attacking with 1 handed sword
+                        if (isAttacking == false && transform.GetChild(i).gameObject.tag == "OneHandedSword")
+                        {
+                            // Play the attack sound
+                            soundManager.Play("Two hand sword");
+                        }
                     }
                     // If that is a bow
                     else
