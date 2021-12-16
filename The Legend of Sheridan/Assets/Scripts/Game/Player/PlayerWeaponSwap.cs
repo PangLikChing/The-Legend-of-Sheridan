@@ -10,6 +10,7 @@ public class PlayerWeaponSwap : MonoBehaviour
 {
     //test key
     [SerializeField] KeyCode swapRight, swapLeft;
+    Attack attack;
     [SerializeField] Inventory inventory;
     [SerializeField] GameObject player;
     [SerializeField] Image weaponImage;
@@ -17,7 +18,6 @@ public class PlayerWeaponSwap : MonoBehaviour
     int currentWeapon = 0;
     // The order of this list cannot be changed. Should be the same order as the player's weapon in the scene
     bool[] weapons = new bool[3];
-
 
     // Function to get the current weapon list
     void GetWeaponList()
@@ -29,6 +29,8 @@ public class PlayerWeaponSwap : MonoBehaviour
 
     void SwapWeapon(int _index)
     {
+        // Set isAttacking to false
+        attack.isAttacking = false;
         // Set the old weapon to inactive
         player.transform.GetChild(currentWeapon).gameObject.SetActive(false);
         // Set the new weapon to active
@@ -39,6 +41,8 @@ public class PlayerWeaponSwap : MonoBehaviour
 
     void Start()
     {
+        // Initialize
+        attack = transform.GetComponent<Attack>();
         // Initialize the array
         GetWeaponList();
     }

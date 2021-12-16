@@ -38,5 +38,13 @@ public class PlayerPickItems : MonoBehaviour
             // Put the weapon to the inventory
             player.GetComponent<Inventory>().has1HandedSword = true;
         }
+        // If the player hits the bow
+        if (other.gameObject.tag == "Bow")
+        {
+            // Set the weapon to inactive
+            other.gameObject.SetActive(false);
+            // Put the weapon to the inventory
+            player.GetComponent<Inventory>().hasbow = true;
+        }
     }
 }

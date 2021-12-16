@@ -12,6 +12,7 @@ TagManager:
   - WalkingEnemy
   - Rock
   - FreeDoor
+  - SentryGun
   layers:
   - Default
   - TransparentFX
