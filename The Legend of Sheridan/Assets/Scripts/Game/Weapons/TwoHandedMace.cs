@@ -7,6 +7,14 @@ using UnityEngine;
 
 public class TwoHandedMace : MonoBehaviour
 {
+    SoundManager soundManager;
+
+    void Start()
+    {
+        // Initialize
+        soundManager = FindObjectOfType<SoundManager>();
+    }
+
     void setIsAttackingToFalse()
     {
         transform.parent.GetComponent<Attack>().isAttacking = false;
@@ -15,5 +23,7 @@ public class TwoHandedMace : MonoBehaviour
     void setIsAttackingToTrue()
     {
         transform.parent.GetComponent<Attack>().isAttacking = true;
+        // Play the attacking sound
+        soundManager.Play("Two hand sword");
     }
 }

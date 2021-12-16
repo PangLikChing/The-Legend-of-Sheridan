@@ -5,7 +5,7 @@ using UnityEngine;
 // This script should be put on the next level trigger in the game scene
 // This script is for letting the player to proceed to the next level
 
-public class FirstLevelEndTrigger : MonoBehaviour
+public class LevelEndTrigger : MonoBehaviour
 {
     // Initialize
     GameManager gameManager;

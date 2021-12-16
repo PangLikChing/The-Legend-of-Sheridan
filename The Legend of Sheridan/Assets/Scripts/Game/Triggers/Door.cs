@@ -51,13 +51,27 @@ public class Door : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         // If Zelda hits the trigger zone
-        if (other.gameObject.name == "Zelda")
+        if (other.gameObject.tag == "Player")
         {
-            // If Zelda has the key in his inventory
-            if (other.gameObject.GetComponent<Inventory>().hasKey == true || this.tag == "FreeDoor")
+            // If player is in his own
+            if (other.gameObject.GetComponent<Inventory>())
             {
-                // Set openDoor to true
-                openDoor = true;
+                // If Zelda has the key in his inventory
+                if (other.gameObject.GetComponent<Inventory>().hasKey == true || this.tag == "FreeDoor")
+                {
+                    // Set openDoor to true
+                    openDoor = true;
+                }
+            }
+            // If the player is with some vehicles
+            else
+            {
+                // If Zelda has the key in his inventory
+                if (this.tag == "FreeDoor")
+                {
+                    // Set openDoor to true
+                    openDoor = true;
+                }
             }
         }
     }

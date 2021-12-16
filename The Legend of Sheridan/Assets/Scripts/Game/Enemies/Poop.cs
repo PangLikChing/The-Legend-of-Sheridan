@@ -9,10 +9,11 @@ public class Poop : MonoBehaviour
 {
     // Initialize
     GameManager gameManager;
-
+    SoundManager soundManager;
     void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
+        soundManager = FindObjectOfType<SoundManager>();
     }
 
     void OnTriggerEnter(Collider other)
@@ -24,6 +25,8 @@ public class Poop : MonoBehaviour
             other.gameObject.GetComponent<PlayerStat>().health -= 1;
             // Ask the game manager to check health and update UI
             gameManager.CheckHealth();
+            // Play take damage sound effect
+            soundManager.Play("Player take damage");
         }
         // If the poop hit the death zone
         else if (other.gameObject.name == "Death Zone")

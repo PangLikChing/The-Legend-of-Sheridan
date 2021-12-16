@@ -13,6 +13,7 @@ TagManager:
   - Rock
   - FreeDoor
   - SentryGun
+  - DungeonRock
   layers:
   - Default
   - TransparentFX
