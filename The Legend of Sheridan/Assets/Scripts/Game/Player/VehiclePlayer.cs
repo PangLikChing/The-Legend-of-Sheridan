@@ -11,4 +11,12 @@ public class VehiclePlayer : MonoBehaviour
             collision.gameObject.SetActive(false);
         }
     }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "DungeonRock")
+        {
+            other.gameObject.SetActive(false);
+        }
+    }
 }

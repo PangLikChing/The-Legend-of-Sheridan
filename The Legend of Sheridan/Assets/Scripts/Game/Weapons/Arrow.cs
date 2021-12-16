@@ -44,7 +44,7 @@ public class Arrow : MonoBehaviour
     // If the arrow hits anything other than the player and the bow
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player" || other.gameObject.tag == "Bow")
+        if (other.gameObject.tag == "Player" || other.gameObject.tag == "Bow" || other.gameObject.tag == "RockBullet")
         {
             // Do nothing
         }

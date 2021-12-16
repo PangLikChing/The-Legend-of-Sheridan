@@ -66,7 +66,7 @@ public class RockBullet : MonoBehaviour
             // Do nothing
         }
         // If it hits the mace or bow
-        else if (other.gameObject.tag == "TwoHandedMace" || other.gameObject.tag == "bow")
+        else if (other.gameObject.tag == "TwoHandedMace" || other.gameObject.tag == "bow" || other.gameObject.tag == "Arrow")
         {
             // Do nothing
         }
