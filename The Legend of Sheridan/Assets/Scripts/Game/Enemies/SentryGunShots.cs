@@ -7,13 +7,14 @@ using UnityEngine;
 
 public class SentryGunShots : MonoBehaviour
 {
+    GameManager gameManager;
     [SerializeField] float projectileSpeed = 0.5f;
 
-    //void Start()
-    //{
-    //    // Set the projectile as same as sentry gun's rotation
-    //    transform.rotation = transform.parent.rotation;
-    //}
+    void Start()
+    {
+        // Find the game manager
+        gameManager = FindObjectOfType<GameManager>();
+    }
 
     void FixedUpdate()
     {
@@ -30,6 +31,14 @@ public class SentryGunShots : MonoBehaviour
             // Set the bullet to inactive
             gameObject.SetActive(false);
         }
+        // Should not hit this, here just to be safe
+        else if (other.gameObject.tag == "Player")
+        {
+            // Decrease the number of health by damage, aka 1
+            other.gameObject.GetComponent<PlayerStat>().health -= 1;
+            // Ask the game manager to check health and update UI
+            gameManager.CheckHealth();
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -39,6 +48,14 @@ public class SentryGunShots : MonoBehaviour
         {
             // Set the bullet to inactive
             gameObject.SetActive(false);
+        }
+        // If the shot hits the player
+        if (collision.gameObject.tag == "Player")
+        {
+            // Decrease the number of health by damage, aka 1
+            collision.gameObject.GetComponent<PlayerStat>().health -= 1;
+            // Ask the game manager to check health and update UI
+            gameManager.CheckHealth();
         }
     }
 }
