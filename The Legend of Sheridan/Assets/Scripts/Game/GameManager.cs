@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] PlayerStat playerStat;
     [SerializeField] Image weaponImage;
     [SerializeField] List<Sprite> weaponSprites;
+    [SerializeField] KeyCode quit;
     int health;
     // Bool for checking if the player is starting the game from the beginning or not
     [SerializeField] bool fromBeginning;
@@ -67,6 +68,13 @@ public class GameManager : MonoBehaviour
         health = playerStat.health;
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(quit))
+        {
+            Application.Quit();
+        }
+    }
     void LoadData()
     {
         // Load data
