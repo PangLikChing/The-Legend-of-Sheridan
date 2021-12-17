@@ -60,6 +60,8 @@ public class SentryGunShots : MonoBehaviour
             collision.gameObject.GetComponent<PlayerStat>().health -= 1;
             // Ask the game manager to check health and update UI
             gameManager.CheckHealth();
+            // Play take damage sound effect
+            soundManager.Play("Player take damage");
         }
     }
 }
